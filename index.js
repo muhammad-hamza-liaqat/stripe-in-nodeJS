@@ -5,6 +5,9 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// database
+require("./database/connection");
+
 // routes
 const userRoutes = require("./routes/routes");
 app.use('/api', userRoutes);
