@@ -1,6 +1,6 @@
 <!-- endpoints -->
 for testing purpose
-=> http://localhost:3000/api/me
+=> http://localhost:3000/website/productpage/product
 
 <!-- project description -->
 this is a project in which simply the implementation of stripe is added

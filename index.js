@@ -10,7 +10,7 @@ require("./database/connection");
 
 // routes
 const userRoutes = require("./routes/routes");
-app.use('/api', userRoutes);
+app.use('/website/productpage', userRoutes);
 
 
 // server 
