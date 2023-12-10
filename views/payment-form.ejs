@@ -1,0 +1,22 @@
+<!-- views/payment-form.ejs -->
+<html>
+  <head>
+    <title>Payment Form</title>
+  </head>
+  <body>
+    <h1>Payment Form</h1>
+    <form method="post" action="/payment">
+      <!-- Your payment form fields here -->
+      <label for="amount">Amount:</label>
+      <input type="text" id="amount" name="amount" required>
+      <br>
+      <label for="currency">Currency:</label>
+      <input type="text" id="currency" name="currency" required>
+      <br>
+      <label for="token">Card Token:</label>
+      <input type="text" id="token" name="token" required>
+      <br>
+      <button type="submit">Submit Payment</button>
+    </form>
+  </body>
+</html>

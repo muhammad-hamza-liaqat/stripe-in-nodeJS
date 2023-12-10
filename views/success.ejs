@@ -1,0 +1,12 @@
+<!-- views/payment-success.ejs -->
+<html>
+  <head>
+    <title>Payment Success</title>
+  </head>
+  <body>
+    <h1>Payment Successful</h1>
+    <p>Charge ID: <%= charge.id %></p>
+    <p>Amount: <%= charge.amount / 100 %> <%= charge.currency.toUpperCase() %></p>
+    <!-- Additional success information -->
+  </body>
+</html>

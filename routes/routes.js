@@ -1,10 +1,9 @@
+// routes/index.js
 const express = require('express');
-const functionME = require('../controller/routesController');
 const router = express.Router();
+const paymentController = require('../controllers/paymentController');
 
+router.get('/payment', paymentController.showPaymentForm);
+router.post('/payment', paymentController.processPayment);
 
-
-router.route('/product').get(functionME)
-
-
-module.exports = router
+module.exports = router;
