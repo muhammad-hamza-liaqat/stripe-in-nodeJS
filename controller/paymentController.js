@@ -29,10 +29,10 @@ async function createCharge(amount, currency, token) {
 
 function handleSuccessfulPayment(res, charge) {
   // Render the success view with the charge data
-  res.render("payment-success", { charge });
+  res.render("success", { charge });
 }
 
 function handlePaymentFailure(res, errorMessage) {
   // Render the failure view with the error message
-  res.render("payment-failure", { error: errorMessage });
+  res.render("failure", { error: errorMessage });
 }

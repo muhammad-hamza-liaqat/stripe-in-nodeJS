@@ -4,7 +4,7 @@
     <title>Payment Form</title>
     <style>
       body {
-        font-family: 'Arial', sans-serif;
+        font-family: "Arial", sans-serif;
         background-color: #f4f4f4;
         margin: 0;
         padding: 0;
@@ -53,17 +53,20 @@
   </head>
   <body>
     <h1>Payment Form</h1>
-    <form method="post" action="/payment">
+    <form
+      method="post"
+      action="http://localhost:3000/website/productpage/payment"
+    >
       <!-- Your payment form fields here -->
       <label for="amount">Amount:</label>
-      <input type="text" id="amount" name="amount" required>
-      <br>
+      <input type="text" id="amount" name="amount" required />
+      <br />
       <label for="currency">Currency:</label>
-      <input type="text" id="currency" name="currency" required>
-      <br>
+      <input type="text" id="currency" name="currency" required />
+      <br />
       <label for="token">Card Token:</label>
-      <input type="text" id="token" name="token" required>
-      <br>
+      <input type="text" id="token" name="token" required />
+      <br />
       <button type="submit">Submit Payment</button>
     </form>
   </body>
