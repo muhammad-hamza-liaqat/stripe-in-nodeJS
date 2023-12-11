@@ -1,5 +1,5 @@
 const stripe = require("stripe")(
-  "pk_test_51MlTROGi1bsyWjuiHy2LH6ndjmPFrqQ88iJ07A4gMpHWD1dxafeWEPCJyFg9zHmSyQOjXQeUMUAqiykWDi4KI7g100WoqWIQEp"
+  "sk_test_51MlTROGi1bsyWjuiSj7FHbWeWleviRQHABHKWuzNlrB91wri7uN4hKxzAQDOhHvMd5jIg0wtl1sxV76lQnewuuh00016DsZBy4"
 );
 
 module.exports = {
@@ -20,6 +20,7 @@ module.exports = {
 };
 
 async function createCharge(amount, currency, token) {
+
   return await stripe.charges.create({
     amount,
     currency,

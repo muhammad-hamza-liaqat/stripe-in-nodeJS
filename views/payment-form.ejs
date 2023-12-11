@@ -5,69 +5,131 @@
     <style>
       body {
         font-family: "Arial", sans-serif;
-        background-color: #f4f4f4;
+        background-color: #f8f9fa;
         margin: 0;
         padding: 0;
-        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
       }
 
       h1 {
-        color: #333;
+        color: #343a40;
+        margin-bottom: 20px;
       }
 
       form {
         max-width: 400px;
-        margin: 20px auto;
+        width: 100%;
         background-color: #fff;
         padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
       }
 
       label {
         display: block;
-        margin: 10px 0 5px;
-        color: #555;
+        margin-bottom: 8px;
+        color: #495057;
       }
 
       input {
         width: 100%;
-        padding: 8px;
-        margin-bottom: 10px;
+        padding: 10px;
+        margin-bottom: 15px;
         box-sizing: border-box;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        outline: none;
+        transition: border-color 0.3s;
+      }
+
+      input:focus {
+        border-color: #007bff;
+      }
+
+      #card-element {
+        margin-bottom: 20px;
+        padding: 15px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
       }
 
       button {
-        background-color: #4caf50;
+        background-color: #007bff;
         color: #fff;
-        padding: 10px 15px;
+        padding: 12px 20px;
         border: none;
-        border-radius: 3px;
+        border-radius: 5px;
         cursor: pointer;
+        font-size: 16px;
+        outline: none;
+        transition: background-color 0.3s;
+        width: 100%;
       }
 
       button:hover {
-        background-color: #45a049;
+        background-color: #0056b3;
       }
     </style>
+    <!-- Include Stripe.js library -->
+    <script src="https://js.stripe.com/v3/"></script>
   </head>
   <body>
     <h1>Payment Form</h1>
     <form
-      method="post"
+      id="payment-form"
       action="http://localhost:3000/website/productpage/payment"
+      method="post"
     >
-      <!-- Your payment form fields here -->
       <label for="amount">Amount:</label>
       <input type="text" id="amount" name="amount" required />
-      <br />
       <label for="currency">Currency:</label>
       <input type="text" id="currency" name="currency" required />
-      <br />
-      <label for="token">Card Token:</label>
-      <input type="text" id="token" name="token" required />
-      <br />
+      <div id="card-element"></div>
       <button type="submit">Submit Payment</button>
     </form>
+
+    <script>
+      // Set up Stripe.js and create an instance
+      const stripe = Stripe(
+        "pk_test_51MlTROGi1bsyWjuiHy2LH6ndjmPFrqQ88iJ07A4gMpHWD1dxafeWEPCJyFg9zHmSyQOjXQeUMUAqiykWDi4KI7g100WoqWIQEp"
+      );
+      const elements = stripe.elements();
+
+      // Create an instance of the card Element.
+      const card = elements.create("card");
+
+      // Add an instance of the card Element into the `card-element` div.
+      card.mount("#card-element");
+
+      // Handle form submission
+      const form = document.getElementById("payment-form");
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        // Create a token or handle the card details
+        const { token, error } = await stripe.createToken(card);
+
+        if (error) {
+          console.error(error);
+        } else {
+          console.log("Token created:", token.id);
+
+          const tokenInput = document.createElement("input");
+          tokenInput.type = "hidden";
+          tokenInput.name = "token";
+          tokenInput.value = token.id;
+          form.appendChild(tokenInput);
+
+          // Submit the form with the added token input
+          form.submit();
+
+          console.log("Form submitted");
+        }
+      });
+    </script>
   </body>
 </html>

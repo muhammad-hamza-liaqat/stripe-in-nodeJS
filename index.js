@@ -2,14 +2,18 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
+console.log("Stripe Secret Key:", "sk_test_51MlTROGi1bsyWjuiSj7FHbWeWleviRQHABHKWuzNlrB91wri7uN4hKxzAQDOhHvMd5jIg0wtl1sxV76lQnewuuh00016DsZBy4");
+
 const Stripe = require("stripe")(
-  "pk_test_51MlTROGi1bsyWjuiHy2LH6ndjmPFrqQ88iJ07A4gMpHWD1dxafeWEPCJyFg9zHmSyQOjXQeUMUAqiykWDi4KI7g100WoqWIQEp"
+  "sk_test_51MlTROGi1bsyWjuiSj7FHbWeWleviRQHABHKWuzNlrB91wri7uN4hKxzAQDOhHvMd5jIg0wtl1sxV76lQnewuuh00016DsZBy4"
 );
 
+
 // middleware
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+
 
 // database
 require("./database/connection");
